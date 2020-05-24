@@ -1,9 +1,6 @@
 package com.example.moviedatabase.data.repository
 
-import com.example.moviedatabase.data.UserRepositoryImpl
-import com.example.moviedatabase.data.local.db.AppDatabase
 import com.example.moviedatabase.data.model.UserEntityMapper
-import com.example.moviedatabase.data.remote.api.UserApi
 import io.reactivex.Completable
 import org.junit.Before
 import org.junit.Test

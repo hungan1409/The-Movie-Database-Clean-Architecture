@@ -67,6 +67,11 @@ android {
     androidExtensions {
         isExperimental = true
     }
+
+    applicationVariants.all {
+        val urlImage = "https://image.tmdb.org/t/p/original"
+        buildConfigField("String", "URL_IMAGE", "\"$urlImage\"")
+    }
 }
 
 dependencies {
@@ -120,10 +125,10 @@ dependencies {
 
     // module
     implementation(project(Modules.domain)) {
-        exclude(group = "com.example.cleanarchitecture", module = "domain")
+        exclude(group = "com.example.moviedatabase", module = "domain")
     }
     implementation(project(Modules.data)) {
-        exclude(group = "com.example.cleanarchitecture", module = "data")
+        exclude(group = "com.example.moviedatabase", module = "data")
     }
 
     // Navigation

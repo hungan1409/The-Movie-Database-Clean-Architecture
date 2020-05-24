@@ -1,7 +1,6 @@
 package com.example.moviedatabase.domain.usecase.item
 
 import com.example.moviedatabase.domain.createItem
-import com.example.moviedatabase.domain.repository.ItemRepository
 import io.reactivex.Single
 import org.junit.After
 import org.junit.Before

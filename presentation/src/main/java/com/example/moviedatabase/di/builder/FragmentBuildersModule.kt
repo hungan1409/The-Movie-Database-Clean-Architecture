@@ -1,8 +1,7 @@
 package com.example.moviedatabase.di.builder
 
 import com.example.moviedatabase.MainActivity
-import com.example.moviedatabase.ui.contributor.ContributorFragment
-import com.example.moviedatabase.ui.main.MainFragment
+import com.example.moviedatabase.ui.home.HomeFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -14,8 +13,5 @@ abstract class FragmentBuildersModule {
     abstract fun contributeMainActivity(): MainActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeMainFragment(): MainFragment
-
-    @ContributesAndroidInjector
-    abstract fun contributeRepoDetailFragment(): ContributorFragment
+    abstract fun contributeHomeFragment(): HomeFragment
 }

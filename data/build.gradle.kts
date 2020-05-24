@@ -40,6 +40,13 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    libraryVariants.all {
+        val API_KEY = "3e047b2cc8fc38537ee7b3e6f547e53c"
+        val BASE_URL = "https://api.themoviedb.org/3/"
+        buildConfigField("String", "API_KEY", "\"${API_KEY}\"")
+        buildConfigField("String", "BASE_URL", "\"${BASE_URL}\"")
+    }
 }
 
 dependencies {

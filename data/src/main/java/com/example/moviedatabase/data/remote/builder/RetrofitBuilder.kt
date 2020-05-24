@@ -3,7 +3,6 @@ package com.example.moviedatabase.data.remote.builder
 import android.content.Context
 import com.example.moviedatabase.data.BuildConfig
 import com.example.moviedatabase.data.HttpClient
-import com.example.moviedatabase.data.R
 import com.example.moviedatabase.data.remote.auth.OauthRefreshAuthenticator
 import com.example.moviedatabase.data.remote.factory.RxErrorHandlingFactory
 import okhttp3.Authenticator
@@ -26,7 +25,7 @@ class RetrofitBuilder @Inject constructor(private val context: Context) {
     private var logEnable: Boolean = BuildConfig.DEBUG
     private var isSupportAuthorization = false
     private var authenticator: Authenticator? = null
-    private var baseUrl: String = context.getString(R.string.base_url)
+    private var baseUrl: String = BuildConfig.BASE_URL
 
     @Inject
     lateinit var oauthRefreshAuthenticator: OauthRefreshAuthenticator

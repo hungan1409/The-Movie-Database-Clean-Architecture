@@ -14,4 +14,11 @@
     <string name="contributor">Contributor</string>
     <string name="search_hint">Input to search</string>
     <string name="search_btn_title">Search</string>
+
+    <!--Home screen-->
+    <string name="recommendations">RECOMMENDATIONS</string>
+    <string name="category">CATEGORY</string>
+    <string name="popular">POPULAR</string>
+    <string name="top_rated">TOP RATED</string>
+    <string name="upcoming">UPCOMING</string>
 </resources>

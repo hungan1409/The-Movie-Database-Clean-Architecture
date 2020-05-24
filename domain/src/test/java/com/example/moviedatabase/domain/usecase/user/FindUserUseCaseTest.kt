@@ -1,7 +1,6 @@
 package com.example.moviedatabase.domain.usecase.user
 
 import com.example.moviedatabase.domain.createUser
-import com.example.moviedatabase.domain.repository.UserRepository
 import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
