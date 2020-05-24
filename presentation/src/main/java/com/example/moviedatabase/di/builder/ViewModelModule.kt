@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.moviedatabase.ViewModelProviderFactory
 import com.example.moviedatabase.di.annotation.ViewModelKey
-import com.example.moviedatabase.ui.contributor.ContributorViewModel
-import com.example.moviedatabase.ui.main.MainViewModel
+import com.example.moviedatabase.ui.home.HomeViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -19,11 +18,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainViewModel::class)
-    abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(ContributorViewModel::class)
-    abstract fun bindRepoDetailViewModel(contributorViewModel: ContributorViewModel): ViewModel
+    @ViewModelKey(HomeViewModel::class)
+    abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
 }

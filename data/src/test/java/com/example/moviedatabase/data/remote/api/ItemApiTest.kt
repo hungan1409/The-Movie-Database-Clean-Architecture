@@ -1,7 +1,6 @@
 package com.example.moviedatabase.data.remote.api
 
 import com.example.moviedatabase.data.ObserverTestUtils.getJson
-import com.example.moviedatabase.data.remote.response.SearchRepoResponse
 import io.reactivex.observers.TestObserver
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer

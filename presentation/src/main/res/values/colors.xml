@@ -21,4 +21,6 @@
     <color name="blue">#0000ff</color>
     <color name="red">#ff0000</color>
     <color name="brown">#ae655e</color>
+
+    <color name="color_title">#3E4A59</color>
 </resources>

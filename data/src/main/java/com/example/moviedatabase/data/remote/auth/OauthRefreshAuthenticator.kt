@@ -5,7 +5,6 @@ import android.os.ConditionVariable
 import com.example.moviedatabase.data.Authentication
 import com.example.moviedatabase.data.BuildConfig
 import com.example.moviedatabase.data.HttpClient
-import com.example.moviedatabase.data.R
 import com.example.moviedatabase.data.local.pref.AppPrefs
 import com.example.moviedatabase.data.model.Token
 import com.example.moviedatabase.data.remote.api.OAuthApi
@@ -105,7 +104,7 @@ class OauthRefreshAuthenticator @Inject constructor(private val context: Context
         val factory = GsonConverterFactory.create(gBuilder)
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(context.getString(R.string.base_url))
+            .baseUrl(BuildConfig.BASE_URL)
             .client(clientBuilder.build())
             .addConverterFactory(factory)
             .build()

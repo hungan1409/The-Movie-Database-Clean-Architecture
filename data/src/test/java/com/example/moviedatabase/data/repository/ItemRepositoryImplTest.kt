@@ -1,11 +1,8 @@
 package com.example.moviedatabase.data.repository
 
-import com.example.moviedatabase.data.ItemRepositoryImpl
 import com.example.moviedatabase.data.createItemEntity
 import com.example.moviedatabase.data.model.ItemEntityMapper
 import com.example.moviedatabase.data.model.OwnerEntityMapper
-import com.example.moviedatabase.data.remote.api.ItemApi
-import com.example.moviedatabase.data.remote.response.SearchRepoResponse
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test

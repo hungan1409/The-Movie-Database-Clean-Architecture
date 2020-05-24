@@ -1,8 +1,5 @@
 package com.example.moviedatabase.domain
 
-import com.example.moviedatabase.domain.model.Item
-import com.example.moviedatabase.domain.model.Owner
-
 fun createItem() = Item(
     id = 2,
     name = "Hoan",

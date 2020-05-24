@@ -17,6 +17,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.moviedatabase.BR
 import com.example.moviedatabase.R
 import com.example.moviedatabase.extension.showDialog
 import com.example.moviedatabase.util.Permission
@@ -28,8 +29,6 @@ import javax.inject.Inject
 
 abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFragment(),
     EasyPermissions.PermissionCallbacks {
-
-    abstract val bindingVariable: Int
 
     abstract val viewModel: V
 
@@ -70,7 +69,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFrag
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewDataBinding.apply {
-            setVariable(bindingVariable, viewModel)
+            setVariable(BR.viewModel, viewModel)
             executePendingBindings()
             lifecycleOwner = this@BaseFragment
         }
