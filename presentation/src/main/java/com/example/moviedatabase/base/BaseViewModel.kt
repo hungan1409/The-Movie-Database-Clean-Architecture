@@ -1,5 +1,6 @@
 package com.example.moviedatabase.base
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moviedatabase.data.remote.exception.RetrofitException
 import com.example.moviedatabase.domain.usecase.UseCase
@@ -32,6 +33,17 @@ abstract class BaseViewModel constructor(
 
     val errorMessage = SingleLiveData<String>()
 
+    val isLoading = MutableLiveData<Boolean>().apply { value = false }
+
+    fun showLoading() {
+        isLoading.value = true
+    }
+
+    fun hideLoading() {
+        isLoading.value = false
+    }
+
+    fun isLoading() = isLoading.value
     fun addDisposable(disposable: Disposable) {
         compositeDisposable.add(disposable)
     }

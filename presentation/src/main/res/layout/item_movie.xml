@@ -44,6 +44,7 @@
             android:layout_marginEnd="@dimen/dp_10"
             android:ellipsize="end"
             android:fontFamily="@font/opensans_bold"
+            android:lines="2"
             android:maxLines="2"
             android:text="@{item.title}"
             android:textAlignment="center"

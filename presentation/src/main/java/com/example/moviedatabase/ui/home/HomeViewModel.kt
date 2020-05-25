@@ -28,6 +28,10 @@ class HomeViewModel @Inject constructor(
     val moviesTopRated = SingleLiveData<List<MovieItem>>()
     val moviesUpcoming = SingleLiveData<List<MovieItem>>()
 
+    var pagePopulars = 1
+    var pageTopRated = 1
+    var pageUpcoming = 1
+
     fun getGenres() {
         getGenresUseCase.createObservable()
             .compose(RxUtils.applySingleScheduler()).map {
@@ -43,44 +47,76 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getMovieListPopular(page: Int) {
+        if (isLoading() == false) {
+            showLoading()
+        }
         getMoviePopularUseCase.createObservable(GetMoviePopularUseCase.Params(page))
             .compose(RxUtils.applySingleScheduler()).map {
                 it.map { movieItem ->
                     movieItemMapper.mapToPresentation(movieItem)
                 }
             }.subscribe({
-                moviesPopulars.value = it
+                var listMovie = ArrayList<MovieItem>()
+                listMovie.addAll(moviesPopulars.value ?: emptyList())
+                listMovie.addAll(it)
+                moviesPopulars.value = listMovie
+                hideLoading()
             }, {
+                hideLoading()
                 setThrowable(it)
             }).add(this)
 
     }
 
     fun getMovieListUpcoming(page: Int) {
+        if (isLoading() == false) {
+            showLoading()
+        }
         getMovieUpcomingUseCase.createObservable(GetMovieUpcomingUseCase.Params(page))
             .compose(RxUtils.applySingleScheduler()).map {
                 it.map { movieItem ->
                     movieItemMapper.mapToPresentation(movieItem)
                 }
             }.subscribe({
-                moviesUpcoming.value = it
+                var listMovie = ArrayList<MovieItem>()
+                listMovie.addAll(moviesUpcoming.value ?: emptyList())
+                listMovie.addAll(it)
+                moviesUpcoming.value = listMovie
+                hideLoading()
             }, {
+                hideLoading()
                 setThrowable(it)
             }).add(this)
 
     }
 
     fun getMovieListTopRated(page: Int) {
+        if (isLoading() == false) {
+            showLoading()
+        }
         getMovieTopRatedUseCase.createObservable(GetMovieTopRatedUseCase.Params(page))
             .compose(RxUtils.applySingleScheduler()).map {
                 it.map { movieItem ->
                     movieItemMapper.mapToPresentation(movieItem)
                 }
             }.subscribe({
-                moviesTopRated.value = it
+                var listMovie = ArrayList<MovieItem>()
+                listMovie.addAll(moviesTopRated.value ?: emptyList())
+                listMovie.addAll(it)
+                moviesTopRated.value = listMovie
+                hideLoading()
             }, {
+                hideLoading()
                 setThrowable(it)
             }).add(this)
+    }
 
+    fun refreshMoviePage() {
+        pagePopulars = 1
+        pageTopRated = 1
+        pageUpcoming = 1
+        moviesPopulars.value = emptyList()
+        moviesTopRated.value = emptyList()
+        moviesUpcoming.value = emptyList()
     }
 }
