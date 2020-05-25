@@ -21,4 +21,20 @@
     <string name="popular">POPULAR</string>
     <string name="top_rated">TOP RATED</string>
     <string name="upcoming">UPCOMING</string>
+
+    <!-- Movie detail -->
+    <string name="your_rate">Your Rate</string>
+    <string name="series_cast">Series Cast</string>
+    <string name="video">Video</string>
+    <string name="comments">Comments</string>
+    <string name="recommendations_detail">Recommendations</string>
+
+    <!-- Information -->
+    <string name="read_more">Read more</string>
+    <string name="read_less">Read less</string>
+    <string name="favorite">Favorite</string>
+
+    <!-- Your rate -->
+    <string name="write_a_comment">Write a comment</string>
+    <string name="rating_format">%.1f</string>
 </resources>

@@ -21,7 +21,7 @@
             android:layout_marginStart="@dimen/dp_16"
             android:fontFamily="@font/opensans_bold"
             android:text="@{title}"
-            android:textColor="@color/color_title"
+            android:textColor="@color/color_text_title"
             android:textSize="@dimen/sp_20"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

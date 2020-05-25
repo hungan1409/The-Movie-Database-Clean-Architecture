@@ -1,7 +1,6 @@
 package com.example.moviedatabase.domain.repository
 
-import com.example.moviedatabase.domain.model.Genre
-import com.example.moviedatabase.domain.model.Movie
+import com.example.moviedatabase.domain.model.*
 import io.reactivex.Single
 
 interface MovieRepository {
@@ -13,4 +12,9 @@ interface MovieRepository {
 
     fun getMovieGenres(): Single<List<Genre>>
 
+    fun getMovieDetail(movieId: Int): Single<MovieDetail>
+
+    fun getMovieVideos(movieId: Int): Single<MovieVideos>
+
+    fun getCredits(movieId: Int): Single<MovieCredits>
 }
