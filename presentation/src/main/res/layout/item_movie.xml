@@ -48,7 +48,7 @@
             android:maxLines="2"
             android:text="@{item.title}"
             android:textAlignment="center"
-            android:textColor="@color/color_title"
+            android:textColor="@color/color_text_title"
             android:textSize="@dimen/sp_15"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

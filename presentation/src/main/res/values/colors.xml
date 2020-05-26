@@ -22,5 +22,12 @@
     <color name="red">#ff0000</color>
     <color name="brown">#ae655e</color>
 
-    <color name="color_title">#3E4A59</color>
+    <color name="bg_movie_detail">#F8F8F8</color>
+    <color name="color_text_rating">#F1CA23</color>
+    <color name="color_text_title">#3E4A59</color>
+    <color name="color_text_content">#4A4A4A</color>
+    <color name="color_text_blue">#007AD9</color>
+    <color name="color_text_grey">#9B9B9B</color>
+    <color name="color_bg_button">#007AD9</color>
+    <color name="color_border_grey">#C7C7C7</color>
 </resources>
