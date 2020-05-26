@@ -41,7 +41,7 @@ class MovieRepositoryImpl @Inject constructor(
 
     override fun getMovieGenres(): Single<List<Genre>> {
         return movieApi.getMovieGenres().map {
-            it.results.map { genre ->
+            it.genres?.map { genre ->
                 genreEntityMapper.mapToDomain(genre)
             }
         }
@@ -62,6 +62,14 @@ class MovieRepositoryImpl @Inject constructor(
     override fun getCredits(movieId: Int): Single<MovieCredits> {
         return movieApi.getMovieCredits(movieId).map {
             movieCreditsEntityMapper.mapToDomain(it)
+        }
+    }
+
+    override fun getMovieRecommendations(movieId: Int): Single<List<Movie>> {
+        return movieApi.getMovieRecommendations(movieId).map {
+            it.results.map { movie ->
+                movieEntityMapper.mapToDomain(movie)
+            }
         }
     }
 }

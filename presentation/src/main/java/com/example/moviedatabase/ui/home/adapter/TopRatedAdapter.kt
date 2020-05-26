@@ -10,25 +10,32 @@ import com.example.moviedatabase.base.BaseRecyclerAdapter
 import com.example.moviedatabase.databinding.ItemMovieBinding
 import com.example.moviedatabase.model.MovieItem
 
-class TopRatedAdapter : BaseRecyclerAdapter<MovieItem>(
+class TopRatedAdapter(val onClickMovieListener: ((MovieItem) -> Unit)?) :
+    BaseRecyclerAdapter<MovieItem>(
 
-    callBack = object : DiffUtil.ItemCallback<MovieItem>() {
-        override fun areItemsTheSame(oldItem: MovieItem, newItem: MovieItem): Boolean {
-            return oldItem == newItem
-        }
+        callBack = object : DiffUtil.ItemCallback<MovieItem>() {
+            override fun areItemsTheSame(oldItem: MovieItem, newItem: MovieItem): Boolean {
+                return oldItem == newItem
+            }
 
-        override fun areContentsTheSame(
-            oldItem: MovieItem,
-            newItem: MovieItem
-        ): Boolean {
-            return oldItem.id == newItem.id
-        }
-    }) {
+            override fun areContentsTheSame(
+                oldItem: MovieItem,
+                newItem: MovieItem
+            ): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }) {
     override fun createBinding(parent: ViewGroup, viewType: Int?): ViewDataBinding {
         return DataBindingUtil.inflate<ItemMovieBinding>(
             LayoutInflater.from(parent.context),
             R.layout.item_movie, parent, false
-        )
+        ).apply {
+            root.setOnClickListener {
+                item?.let { item ->
+                    onClickMovieListener?.invoke(item)
+                }
+            }
+        }
     }
 
     override fun bind(binding: ViewDataBinding, movieItem: MovieItem) {
@@ -36,4 +43,5 @@ class TopRatedAdapter : BaseRecyclerAdapter<MovieItem>(
             binding.item = movieItem
         }
     }
+
 }

@@ -162,4 +162,6 @@ dependencies {
     implementation(Libs.crashAnalytics) {
         isTransitive = true
     }
+
+    implementation(Libs.circleImageView)
 }

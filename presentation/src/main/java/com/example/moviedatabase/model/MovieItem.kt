@@ -21,6 +21,7 @@ data class MovieItem(
     val voteCount: Int? = 0
 ) : ModelItem() {
     fun getImageLink() = "${BuildConfig.URL_IMAGE}$posterPath"
+    fun getImageBackdropPathLink() = "${BuildConfig.URL_IMAGE}$backdropPath"
 }
 
 class MovieItemMapper @Inject constructor() : ItemMapper<Movie, MovieItem> {
