@@ -53,6 +53,8 @@ object Versions {
     internal const val firebaseCore = "17.2.0"
     internal const val firebaseAnalytics = "17.2.0"
     internal const val crashAnalytics = "2.10.1"
+
+    internal const val circleImageView = "3.1.0"
 }
 
 object Url {
@@ -231,4 +233,5 @@ object Libs {
     const val firebaseAnalytics =
         "com.google.firebase:firebase-analytics:${Versions.firebaseAnalytics}"
     const val crashAnalytics = "com.crashlytics.sdk.android:crashlytics:${Versions.crashAnalytics}"
+    const val circleImageView = "de.hdodenhof:circleimageview:${Versions.circleImageView}"
 }

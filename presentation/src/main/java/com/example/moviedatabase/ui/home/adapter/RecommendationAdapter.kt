@@ -7,10 +7,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import com.example.moviedatabase.R
 import com.example.moviedatabase.base.BaseRecyclerAdapter
-import com.example.moviedatabase.databinding.ItemMovieBinding
+import com.example.moviedatabase.databinding.ItemRecommendationBinding
 import com.example.moviedatabase.model.MovieItem
 
-class PopularAdapter(val onClickMovieListener: ((MovieItem) -> Unit)?) :
+class RecommendationAdapter(val onClickMovieListener: ((MovieItem) -> Unit)?) :
     BaseRecyclerAdapter<MovieItem>(
 
         callBack = object : DiffUtil.ItemCallback<MovieItem>() {
@@ -26,9 +26,9 @@ class PopularAdapter(val onClickMovieListener: ((MovieItem) -> Unit)?) :
             }
         }) {
     override fun createBinding(parent: ViewGroup, viewType: Int?): ViewDataBinding {
-        return DataBindingUtil.inflate<ItemMovieBinding>(
+        return DataBindingUtil.inflate<ItemRecommendationBinding>(
             LayoutInflater.from(parent.context),
-            R.layout.item_movie, parent, false
+            R.layout.item_recommendation, parent, false
         ).apply {
             root.setOnClickListener {
                 item?.let { item ->
@@ -39,9 +39,10 @@ class PopularAdapter(val onClickMovieListener: ((MovieItem) -> Unit)?) :
     }
 
     override fun bind(binding: ViewDataBinding, movieItem: MovieItem) {
-        if (binding is ItemMovieBinding) {
-            binding.item = movieItem
+        if (binding is ItemRecommendationBinding) {
+            binding.apply {
+                item = movieItem
+            }
         }
     }
 }
-

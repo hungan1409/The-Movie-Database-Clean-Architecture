@@ -31,6 +31,10 @@ interface MovieApi {
 
     @GET("movie/{movie_id}/credits")
     fun getMovieCredits(@Path(ApiParams.MOVIE_ID) movieId: Int): Single<MovieCreditsEntity>
+
+    @GET("movie/{movie_id}/recommendations")
+    fun getMovieRecommendations(@Path(ApiParams.MOVIE_ID) movieId: Int): Single<GetMovieResponse>
+
 }
 
 object ApiParams {

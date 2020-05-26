@@ -6,6 +6,7 @@ import androidx.lifecycle.Transformations
 import com.example.moviedatabase.base.BaseViewModel
 import com.example.moviedatabase.domain.usecase.movie.GetMovieCreditsUseCase
 import com.example.moviedatabase.domain.usecase.movie.GetMovieDetailUseCase
+import com.example.moviedatabase.domain.usecase.movie.GetMovieRecommendationsUseCase
 import com.example.moviedatabase.domain.usecase.movie.GetMovieVideosUseCase
 import com.example.moviedatabase.extension.add
 import com.example.moviedatabase.extension.toMMMMyyyy
@@ -19,7 +20,9 @@ class MovieDetailViewModel @Inject constructor(
     private val getMovieCreditsUseCase: GetMovieCreditsUseCase,
     private val movieDetailItemMapper: MovieDetailItemMapper,
     private val movieVideosItemMapper: MovieVideosItemMapper,
-    private val movieCreditsItemMapper: MovieCreditsItemMapper
+    private val movieCreditsItemMapper: MovieCreditsItemMapper,
+    private val getMovieRecommendationsUseCase: GetMovieRecommendationsUseCase,
+    private val movieItemMapper: MovieItemMapper
 ) : BaseViewModel() {
 
     val movieDetailItem = MutableLiveData<MovieDetailItem>()
@@ -41,6 +44,8 @@ class MovieDetailViewModel @Inject constructor(
     val movieVideosItem = MutableLiveData<MovieVideosItem>()
 
     val movieCreditsItem = MutableLiveData<MovieCreditsItem>()
+
+    val movieRecommendations = MutableLiveData<List<MovieItem>>()
 
     fun expandOverview() {
         isExpandingOverview.value = isExpandingOverview.value?.not()
@@ -74,6 +79,28 @@ class MovieDetailViewModel @Inject constructor(
             .map { movieCreditsItemMapper.mapToPresentation(it) }
             .subscribe({
                 movieCreditsItem.value = it
+            }, {
+                setThrowable(it)
+            }).add(this)
+    }
+
+    fun getMovieRecommendations(movieId: Int) {
+        getMovieRecommendationsUseCase.createObservable(
+            GetMovieRecommendationsUseCase.Params(
+                movieId
+            )
+        )
+            .compose(RxUtils.applySingleScheduler())
+            .map {
+                it.map { movieItem ->
+                    movieItemMapper.mapToPresentation(movieItem)
+                }
+            }
+            .subscribe({
+                var listMovie = ArrayList<MovieItem>()
+                listMovie.addAll(movieRecommendations.value ?: emptyList())
+                listMovie.addAll(it)
+                movieRecommendations.value = listMovie
             }, {
                 setThrowable(it)
             }).add(this)

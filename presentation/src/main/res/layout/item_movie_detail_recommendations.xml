@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="item"
+            type="com.example.moviedatabase.model.MovieItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

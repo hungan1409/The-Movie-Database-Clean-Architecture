@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="item"
+            type="com.example.moviedatabase.model.GenreItem" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

@@ -19,8 +19,21 @@ fun ImageView.bindImage(url: String?, listener: RequestListener<Drawable?>?) {
     Glide.with(context)
         .load(url)
         .listener(listener)
-        .placeholder(context?.getDrawable(R.drawable.placeholder))
+        .placeholder(R.drawable.placeholder)
         .into(this)
+}
+
+@BindingAdapter("safeClick")
+fun View.safeClick(listener: View.OnClickListener?) {
+    val blockInMillis: Long = 500
+    var lastClickTime: Long = 0
+    this.setOnClickListener {
+        if (SystemClock.elapsedRealtime() - lastClickTime < blockInMillis) {
+            return@setOnClickListener
+        }
+        lastClickTime = SystemClock.elapsedRealtime()
+        listener?.onClick(this)
+    }
 }
 
 @BindingAdapter(value = ["list", "childLayout"], requireAll = false)
@@ -47,18 +60,5 @@ fun ExpandableTextView.isExpanding(isExpanding: Boolean?) {
         expand()
     } else {
         collapse()
-    }
-}
-
-@BindingAdapter("safeClick")
-fun View.safeClick(listener: View.OnClickListener?) {
-    val blockInMillis: Long = 500
-    var lastClickTime: Long = 0
-    this.setOnClickListener {
-        if (SystemClock.elapsedRealtime() - lastClickTime < blockInMillis) {
-            return@setOnClickListener
-        }
-        lastClickTime = SystemClock.elapsedRealtime()
-        listener?.onClick(this)
     }
 }
