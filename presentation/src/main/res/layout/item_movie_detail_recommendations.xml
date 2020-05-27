@@ -27,6 +27,7 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageMovie"
+                imageUrl="@{item.imageLink}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -38,6 +39,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_7"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{item.title}"
             android:textAlignment="center"
             android:textColor="@color/color_text_content"
             android:textSize="@dimen/sp_12"

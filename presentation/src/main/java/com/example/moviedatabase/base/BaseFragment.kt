@@ -1,6 +1,5 @@
 package com.example.moviedatabase.base
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.pm.PackageManager
@@ -8,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
 import androidx.annotation.LayoutRes
 import androidx.annotation.Size
 import androidx.core.content.ContextCompat
@@ -16,7 +14,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.example.moviedatabase.BR
 import com.example.moviedatabase.R
 import com.example.moviedatabase.extension.showDialog
@@ -38,23 +35,13 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFrag
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    var viewDataBinding by autoCleared<T>()
+    private var errorMessageDialog: AlertDialog? = null
 
-    var errorMessageDialog: AlertDialog? = null
+    var viewDataBinding by autoCleared<T>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        activity?.onBackPressedDispatcher?.addCallback(this) {
-            if (onBackPressed()) {
-                val navController = findNavController()
-                if (navController.currentDestination?.id == navController.graph.startDestination) {
-                    activity?.finish()
-                } else {
-                    navController.navigateUp()
-                }
-            }
-        }
     }
 
     override fun onCreateView(
@@ -114,8 +101,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFrag
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) = Unit
 
-    @SuppressLint("ShowToast")
-    private fun subscriberException() {
+    protected open fun subscriberException() {
         viewModel.run {
             httpUnauthorized.observe(viewLifecycleOwner, Observer {
                 // TODO: Handle HTTP is unauthorized
@@ -147,8 +133,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFrag
                 context?.showDialog(message = message, positiveMessage = getString(R.string.ok))
         }
     }
-
-    open fun onBackPressed(): Boolean = true
 
     companion object {
         private const val PERMISSION_REQUEST_CODE = Activity.RESULT_FIRST_USER + 1

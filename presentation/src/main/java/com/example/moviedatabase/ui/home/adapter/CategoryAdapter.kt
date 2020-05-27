@@ -43,6 +43,19 @@ class CategoryAdapter(val onClickMovieListener: ((GenreItem) -> Unit)?) :
         if (binding is ItemGenreBinding) {
             binding.apply {
                 item = genreItem
+                imageViewBackground.setBackgroundResource(
+                    when ((0..2).random()) {
+                        0 -> {
+                            R.drawable.ic_background_category
+                        }
+                        1 -> {
+                            R.drawable.ic_background_category_2
+                        }
+                        else -> {
+                            R.drawable.ic_background_category_3
+                        }
+                    }
+                )
             }
         }
     }

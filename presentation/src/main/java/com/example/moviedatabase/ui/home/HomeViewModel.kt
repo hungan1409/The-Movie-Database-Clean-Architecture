@@ -122,7 +122,7 @@ class HomeViewModel @Inject constructor(
         }
         getMovieRecommendationsUseCase.createObservable(
             GetMovieRecommendationsUseCase.Params(
-                movieId.value!!
+                movieId.value!!, page
             )
         )
             .compose(RxUtils.applySingleScheduler())

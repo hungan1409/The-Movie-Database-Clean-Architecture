@@ -4,6 +4,7 @@ import com.example.moviedatabase.data.model.MovieCreditsEntity
 import com.example.moviedatabase.data.model.MovieDetailEntity
 import com.example.moviedatabase.data.model.MovieVideosEntity
 import com.example.moviedatabase.data.remote.response.GetGenresResponse
+import com.example.moviedatabase.data.remote.response.GetMovieCommentsResponse
 import com.example.moviedatabase.data.remote.response.GetMovieResponse
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -33,8 +34,13 @@ interface MovieApi {
     fun getMovieCredits(@Path(ApiParams.MOVIE_ID) movieId: Int): Single<MovieCreditsEntity>
 
     @GET("movie/{movie_id}/recommendations")
-    fun getMovieRecommendations(@Path(ApiParams.MOVIE_ID) movieId: Int): Single<GetMovieResponse>
+    fun getMovieRecommendations(
+        @Path(ApiParams.MOVIE_ID) movieId: Int,
+        @Query(ApiParams.PAGE) page: Int
+    ): Single<GetMovieResponse>
 
+    @GET("movie/{movie_id}/reviews")
+    fun getMovieComments(@Path(ApiParams.MOVIE_ID) movieId: Int): Single<GetMovieCommentsResponse>
 }
 
 object ApiParams {

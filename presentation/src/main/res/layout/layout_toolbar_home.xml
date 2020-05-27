@@ -6,11 +6,13 @@
 
     </data>
 
-    <com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_20"
         android:backgroundTint="@color/white"
-        android:elevation="@dimen/dp_20">
+        app:cardCornerRadius="0dp"
+        app:cardElevation="@dimen/dp_10">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,7 +22,9 @@
                 android:id="@+id/imageViewProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp_16"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_10"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -30,21 +34,21 @@
                 android:id="@+id/imageViewLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageViewProfile"
                 app:srcCompat="@drawable/logo" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageViewSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_12"
                 app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageViewProfile"
                 app:srcCompat="@drawable/ic_search_color" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

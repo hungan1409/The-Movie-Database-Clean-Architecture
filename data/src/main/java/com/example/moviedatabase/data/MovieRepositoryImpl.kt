@@ -13,7 +13,8 @@ class MovieRepositoryImpl @Inject constructor(
     private val genreEntityMapper: GenreEntityMapper,
     private val movieDetailEntityMapper: MovieDetailEntityMapper,
     private val movieVideosEntityMapper: MovieVideosEntityMapper,
-    private val movieCreditsEntityMapper: MovieCreditsEntityMapper
+    private val movieCreditsEntityMapper: MovieCreditsEntityMapper,
+    private val movieCommentEntityMapper: MovieCommentEntityMapper
 ) : MovieRepository {
     override fun getMovieListPopular(page: Int): Single<List<Movie>> {
         return movieApi.getMovieListPopular(page).map {
@@ -59,14 +60,20 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getCredits(movieId: Int): Single<MovieCredits> {
+    override fun getMovieCredits(movieId: Int): Single<MovieCredits> {
         return movieApi.getMovieCredits(movieId).map {
             movieCreditsEntityMapper.mapToDomain(it)
         }
     }
 
-    override fun getMovieRecommendations(movieId: Int): Single<List<Movie>> {
-        return movieApi.getMovieRecommendations(movieId).map {
+    override fun getMovieComments(movieId: Int): Single<List<MovieComment>> {
+        return movieApi.getMovieComments(movieId).map { response ->
+            response.results.map { movieCommentEntityMapper.mapToDomain(it) }
+        }
+    }
+
+    override fun getMovieRecommendations(movieId: Int, page: Int): Single<List<Movie>> {
+        return movieApi.getMovieRecommendations(movieId, page).map {
             it.results.map { movie ->
                 movieEntityMapper.mapToDomain(movie)
             }

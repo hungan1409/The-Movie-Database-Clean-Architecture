@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.moviedatabase.base.BaseViewModel
-import com.example.moviedatabase.domain.usecase.movie.GetMovieCreditsUseCase
-import com.example.moviedatabase.domain.usecase.movie.GetMovieDetailUseCase
-import com.example.moviedatabase.domain.usecase.movie.GetMovieRecommendationsUseCase
-import com.example.moviedatabase.domain.usecase.movie.GetMovieVideosUseCase
+import com.example.moviedatabase.domain.usecase.movie.*
 import com.example.moviedatabase.extension.add
 import com.example.moviedatabase.extension.toMMMMyyyy
 import com.example.moviedatabase.model.*
@@ -18,12 +15,16 @@ class MovieDetailViewModel @Inject constructor(
     private val getMovieDetailUseCase: GetMovieDetailUseCase,
     private val getMovieVideosUseCase: GetMovieVideosUseCase,
     private val getMovieCreditsUseCase: GetMovieCreditsUseCase,
+    private val getMovieCommentsUseCase: GetMovieCommentsUseCase,
+    private val getMovieRecommendationsUseCase: GetMovieRecommendationsUseCase,
     private val movieDetailItemMapper: MovieDetailItemMapper,
     private val movieVideosItemMapper: MovieVideosItemMapper,
     private val movieCreditsItemMapper: MovieCreditsItemMapper,
-    private val getMovieRecommendationsUseCase: GetMovieRecommendationsUseCase,
+    private val movieCommentItemMapper: MovieCommentItemMapper,
     private val movieItemMapper: MovieItemMapper
 ) : BaseViewModel() {
+
+    var pageRecommendations = 1
 
     val movieDetailItem = MutableLiveData<MovieDetailItem>()
 
@@ -31,7 +32,7 @@ class MovieDetailViewModel @Inject constructor(
         it.releaseDate?.toMMMMyyyy()
     }
     val genres: LiveData<List<String>> = Transformations.map(movieDetailItem) {
-        it.genres?.map { genre -> (genre.name ?: "") } ?: listOf()
+        it.genres?.map { genre -> (genre.name ?: "") }?.take(MAX_GENRE_DISPLAYED) ?: listOf()
     }
     val isExpandingOverview = MutableLiveData<Boolean>().apply {
         value = false
@@ -44,6 +45,8 @@ class MovieDetailViewModel @Inject constructor(
     val movieVideosItem = MutableLiveData<MovieVideosItem>()
 
     val movieCreditsItem = MutableLiveData<MovieCreditsItem>()
+
+    val movieCommentsItem = MutableLiveData<List<MovieCommentItem>>()
 
     val movieRecommendations = MutableLiveData<List<MovieItem>>()
 
@@ -84,10 +87,21 @@ class MovieDetailViewModel @Inject constructor(
             }).add(this)
     }
 
-    fun getMovieRecommendations(movieId: Int) {
+    fun getMovieComments(movieId: Int) {
+        getMovieCommentsUseCase.createObservable(GetMovieCommentsUseCase.Params(movieId))
+            .compose(RxUtils.applySingleScheduler())
+            .map { list -> list.map { movieCommentItemMapper.mapToPresentation(it) } }
+            .subscribe({
+                movieCommentsItem.value = it.take(MAX_COMMENTS_DISPLAYED)
+            }, {
+                setThrowable(it)
+            }).add(this)
+    }
+
+    fun getMovieRecommendations(movieId: Int, page: Int) {
         getMovieRecommendationsUseCase.createObservable(
             GetMovieRecommendationsUseCase.Params(
-                movieId
+                movieId, page
             )
         )
             .compose(RxUtils.applySingleScheduler())
@@ -104,6 +118,11 @@ class MovieDetailViewModel @Inject constructor(
             }, {
                 setThrowable(it)
             }).add(this)
+    }
+
+    companion object {
+        private const val MAX_GENRE_DISPLAYED = 2
+        private const val MAX_COMMENTS_DISPLAYED = 3
     }
 }
 

@@ -13,9 +13,9 @@ class GetMovieRecommendationsUseCase @Inject constructor(
     override fun createObservable(params: Params?): Single<List<Movie>> {
         return when (params) {
             null -> Single.error(Throwable(message = "Params input not null"))
-            else -> movieRepository.getMovieRecommendations(params.movieId)
+            else -> movieRepository.getMovieRecommendations(params.movieId, params.page)
         }
     }
 
-    data class Params(val movieId: Int)
+    data class Params(val movieId: Int, val page: Int)
 }

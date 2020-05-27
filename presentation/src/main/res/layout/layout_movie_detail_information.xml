@@ -114,8 +114,9 @@
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroupGenre"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:childLayout="@{@layout/item_chip}"
+            app:layout_constraintBottom_toBottomOf="@+id/cardMovieImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/textMovieDate"
             app:layout_constraintTop_toBottomOf="@id/textMovieDate"
