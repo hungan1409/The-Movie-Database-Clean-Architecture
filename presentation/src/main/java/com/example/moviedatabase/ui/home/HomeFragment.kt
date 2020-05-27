@@ -149,6 +149,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                             }
                         }
                     })
+
+                recyclerRecommendation.addOnScrollListener(
+                    object : RecyclerView.OnScrollListener() {
+                        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                            super.onScrolled(recyclerView, dx, dy)
+                            val linearLayoutManager = recyclerView.layoutManager
+                            if (linearLayoutManager is LinearLayoutManager) {
+                                val movieLastItem = (moviesRecommendations.value?.size ?: 0) - 1
+                                if (movieLastItem > 0) {
+                                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == movieLastItem) {
+                                        pageRecommendations++
+                                        getMovieRecommendations(pageRecommendations)
+                                    }
+                                }
+                            }
+                        }
+                    })
             }
         }
     }

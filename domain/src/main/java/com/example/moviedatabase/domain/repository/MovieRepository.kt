@@ -16,7 +16,9 @@ interface MovieRepository {
 
     fun getMovieVideos(movieId: Int): Single<MovieVideos>
 
-    fun getCredits(movieId: Int): Single<MovieCredits>
+    fun getMovieCredits(movieId: Int): Single<MovieCredits>
 
-    fun getMovieRecommendations(movieId: Int): Single<List<Movie>>
+    fun getMovieComments(movieId: Int): Single<List<MovieComment>>
+
+    fun getMovieRecommendations(movieId: Int, page: Int): Single<List<Movie>>
 }

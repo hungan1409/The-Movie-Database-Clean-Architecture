@@ -5,7 +5,7 @@ import com.example.moviedatabase.base.ModelItem
 import com.example.moviedatabase.domain.model.Genre
 import javax.inject.Inject
 
-class GenreItem(
+data class GenreItem(
     val id: Int? = 0,
     val name: String? = ""
 ) : ModelItem()

@@ -5,6 +5,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="materialButtonStyle">@style/MovieDB.Button</item>
     </style>
 
     <style name="AppTheme" parent="BaseAppTheme" />
@@ -47,4 +49,5 @@
         <item name="backgroundTint">@color/color_bg_button</item>
         <item name="elevation">0dp</item>
     </style>
+
 </resources>

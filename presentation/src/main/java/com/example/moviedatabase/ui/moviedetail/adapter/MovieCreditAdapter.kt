@@ -10,7 +10,7 @@ import com.example.moviedatabase.base.BaseRecyclerAdapter
 import com.example.moviedatabase.databinding.ItemMovieDetailSeriesCastBinding
 import com.example.moviedatabase.model.CastItem
 
-class MovieCreditAdapter() : BaseRecyclerAdapter<CastItem>(DIFF_CALLBACK) {
+class MovieCreditAdapter : BaseRecyclerAdapter<CastItem>(DIFF_CALLBACK) {
 
     override fun createBinding(parent: ViewGroup, viewType: Int?): ViewDataBinding {
         return DataBindingUtil.inflate<ItemMovieDetailSeriesCastBinding>(

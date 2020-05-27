@@ -16,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_marginTop="@dimen/dp_15"
         android:clipToPadding="false"
         app:layoutManager="LinearLayoutManager"
         tools:itemCount="3"
