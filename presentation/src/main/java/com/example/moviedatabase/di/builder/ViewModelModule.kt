@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.moviedatabase.ViewModelProviderFactory
 import com.example.moviedatabase.di.annotation.ViewModelKey
 import com.example.moviedatabase.ui.home.HomeViewModel
+import com.example.moviedatabase.ui.moremovies.MoreMoviesViewModel
 import com.example.moviedatabase.ui.moviedetail.MovieDetailViewModel
 import dagger.Binds
 import dagger.Module
@@ -26,4 +27,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MovieDetailViewModel::class)
     abstract fun bindMovieDetailViewModel(movieDetailViewModel: MovieDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MoreMoviesViewModel::class)
+    abstract fun bindMoreMoviesViewModel(moreMoviesViewModel: MoreMoviesViewModel): ViewModel
 }

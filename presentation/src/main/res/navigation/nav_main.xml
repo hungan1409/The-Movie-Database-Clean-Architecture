@@ -26,4 +26,15 @@
             app:argType="integer" />
     </fragment>
 
+    <fragment
+        android:id="@+id/moreMoviesFragment"
+        android:name="com.example.moviedatabase.ui.moremovies.MoreMoviesFragment"
+        android:label="MoreMoviesFragment"
+        tools:layout="@layout/fragment_more_movies">
+        <argument
+            android:name="typeList"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+
 </navigation>

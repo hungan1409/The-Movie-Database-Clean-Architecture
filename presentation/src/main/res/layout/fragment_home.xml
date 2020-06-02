@@ -50,7 +50,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_16"
                         android:visibility="@{viewModel.movieId ==-1 ? View.GONE :View.VISIBLE}"
-                        app:title="@{@string/recommendations}" />
+                        app:title="@{@string/recommendations}"
+                        app:viewModel="@{viewModel}" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerRecommendation"
@@ -73,7 +74,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_16"
                         app:layout_constraintTop_toBottomOf="@id/recyclerRecommendation"
-                        app:title="@{@string/category}" />
+                        app:title="@{@string/category}"
+                        app:viewModel="@{viewModel}" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerCategory"
@@ -95,7 +97,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_16"
                         app:layout_constraintTop_toBottomOf="@id/recyclerCategory"
-                        app:title="@{@string/popular}" />
+                        app:title="@{@string/popular}"
+                        app:viewModel="@{viewModel}" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerPopular"
@@ -117,7 +120,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_16"
                         app:layout_constraintTop_toBottomOf="@id/recyclerPopular"
-                        app:title="@{@string/top_rated}" />
+                        app:title="@{@string/top_rated}"
+                        app:viewModel="@{viewModel}" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerTopRated"
@@ -139,7 +143,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_16"
                         app:layout_constraintTop_toBottomOf="@id/recyclerTopRated"
-                        app:title="@{@string/upcoming}" />
+                        app:title="@{@string/upcoming}"
+                        app:viewModel="@{viewModel}" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerUpcoming"
