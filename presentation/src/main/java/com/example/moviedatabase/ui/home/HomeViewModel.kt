@@ -33,7 +33,7 @@ class HomeViewModel @Inject constructor(
     var pageUpcoming = 1
 
     fun getGenres() {
-        if (isLoading() == false) {
+        if (isLoading.value == false) {
             showLoading()
         }
         getGenresUseCase.createObservable()
@@ -52,7 +52,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getMovieListPopular(page: Int) {
-        if (isLoading() == false) {
+        if (isLoading.value == false) {
             showLoading()
         }
         getMoviePopularUseCase.createObservable(GetMoviePopularUseCase.Params(page))
@@ -74,7 +74,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getMovieListUpcoming(page: Int) {
-        if (isLoading() == false) {
+        if (isLoading.value == false) {
             showLoading()
         }
         getMovieUpcomingUseCase.createObservable(GetMovieUpcomingUseCase.Params(page))
@@ -96,7 +96,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getMovieListTopRated(page: Int) {
-        if (isLoading() == false) {
+        if (isLoading.value == false) {
             showLoading()
         }
         getMovieTopRatedUseCase.createObservable(GetMovieTopRatedUseCase.Params(page))

@@ -1,10 +1,10 @@
 object Versions {
-    const val kotlin = "1.3.70"
-    internal const val androidPlugin = "3.5.3"
+    const val kotlin = "1.6.0"
+    internal const val androidPlugin = "4.2.0"
 
     internal const val androidxCore = "1.1.0"
     internal const val archCore = "2.1.0"
-    internal const val room = "2.1.0-alpha03"
+    internal const val room = "2.4.0-alpha03"
     internal const val lifecycle = "2.2.0-alpha04"
     internal const val lifecycleCommonJava8 = "2.1.0"
     internal const val lifecycleSaved = "1.0.0-alpha04"
@@ -74,7 +74,7 @@ object BuildPlugins {
 
 object Android {
     const val minSdk = 21
-    const val targetSdk = 29
+    const val targetSdk = 31
     const val applicationId = "com.example.moviedatabase"
     const val versionCode = 1
     const val versionName = "1.0.0"
@@ -234,4 +234,6 @@ object Libs {
         "com.google.firebase:firebase-analytics:${Versions.firebaseAnalytics}"
     const val crashAnalytics = "com.crashlytics.sdk.android:crashlytics:${Versions.crashAnalytics}"
     const val circleImageView = "de.hdodenhof:circleimageview:${Versions.circleImageView}"
+
+    const val metadataJvm = "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.3.0"
 }
